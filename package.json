@@ -1,5 +1,5 @@
 {
-  "name": "game-tracker",
+  "name": "game-tracker-mini",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -11,15 +11,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/zothedev/game-tracker.git"
+    "url": "git+https://github.com/zothedev/game-tracker-mini.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/zothedev/game-tracker/issues"
+    "url": "https://github.com/zothedev/game-tracker-mini/issues"
   },
-  "homepage": "https://github.com/zothedev/game-tracker#readme",
+  "homepage": "https://github.com/zothedev/game-tracker-mini#readme",
   "devDependencies": {
     "css-loader": "^7.1.2",
     "html-loader": "^5.1.0",
