@@ -1,4 +1,20 @@
 /* style.css */
 body {
-  background-color: rebeccapurple;
+  background-color: rgb(121, 93, 150);
+}
+
+section {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.itemContainer {
+  border: black solid 2px;
+  padding: 5px;
+  margin: 5px;
+
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
 }

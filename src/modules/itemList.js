@@ -1,4 +1,6 @@
-export function createItemList() {
+import Item from "./item.js";
+
+function createItemList() {
 
     let list = [];
     let itemCount = 0;
@@ -22,9 +24,22 @@ export function createItemList() {
         },
         removeItemByIndex(index) {
             list.splice(index, 1);
-        }
+        },
+        getList() {
+            return list;
+        },
     }
 }
+
+// test items
+const rematch = new Item("REMATCH", "complete", 5, 50);
+const expedition33 = new Item("Expedition 33", "playing", 9, 40);
+
+// create our global item list
+export let globalList = createItemList();
+globalList.addItem(rematch);
+globalList.addItem(expedition33);
+
 
 
 
