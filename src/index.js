@@ -1,9 +1,10 @@
 const log = console.log;
 // src/index.js
 import "./style.css";
-import displayItems from "./modules/displayController";
+import displayController from "./modules/displayController";
 
-displayItems.displayItems();
+const display = displayController();
+display.displayAllItems();
 
 
 

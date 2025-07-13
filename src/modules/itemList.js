@@ -28,6 +28,9 @@ function createItemList() {
         getList() {
             return list;
         },
+        filterList(filter) {
+            return list.filter(item => item.getStatus() === filter)
+        },
     }
 }
 
