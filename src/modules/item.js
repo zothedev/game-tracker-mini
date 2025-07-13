@@ -19,6 +19,7 @@ export default class Item {
     setStatus(status) { this.status = status }
     setRating(rating) { this.rating = rating}
     setHours(hours) { this.hours = hours }
+    setID(id) { this.id = id }
 
     // Methods
     info() {
