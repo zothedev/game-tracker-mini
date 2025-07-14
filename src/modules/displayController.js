@@ -20,7 +20,6 @@ export default function displayController() {
         displayItems(list, filter) {
             if (filter) {
                 list = filterList(filter);
-                console.log(list);
                 list.forEach(item => {
                     createItemDisplay(item);
                 });

@@ -7,6 +7,7 @@ import { getList } from "./modules/itemList";
 import displayController from "./modules/displayController";
 
 // selecting buttons
+const navContainer = document.querySelector('nav');
 const allTabsButton = document.querySelector('.allTabs');
 const upcomingButton = document.querySelector('.upcoming');
 const playingButton = document.querySelector('.playing');
@@ -19,18 +20,30 @@ display.displayItems(getList());
 allTabsButton.classList.add('active');
 
 // tab switching functionality
-allTabsButton.addEventListener('click', () => {
-    prepareView(allTabsButton);
+navContainer.addEventListener('click', (e) => {
+    let target = e.target;
+
+    // if the target is a <button>
+    if (target instanceof HTMLButtonElement) {
+        if (target.classList[0] === 'allTabs') {
+            prepareView(target);
+        } else {
+            prepareView(target, target.classList[0]);
+        }
+    }
 });
-upcomingButton.addEventListener('click', () => {
-    prepareView(upcomingButton, 'upcoming');
-});
-playingButton.addEventListener('click', () => {
-    prepareView(playingButton, 'playing');
-});
-completeButton.addEventListener('click', () => {
-    prepareView(completeButton, 'complete');
-});
+// allTabsButton.addEventListener('click', () => {
+//     prepareView(allTabsButton);
+// });
+// upcomingButton.addEventListener('click', () => {
+//     prepareView(upcomingButton, 'upcoming');
+// });
+// playingButton.addEventListener('click', () => {
+//     prepareView(playingButton, 'playing');
+// });
+// completeButton.addEventListener('click', () => {
+//     prepareView(completeButton, 'complete');
+// });
 
 function removeActiveClassForAll() {
     allTabsButton.classList.remove('active');
