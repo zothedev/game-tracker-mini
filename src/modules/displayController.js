@@ -44,7 +44,8 @@ export default function displayController() {
                 propertyContainer.textContent = title;
                 headerContainer.appendChild(propertyContainer);
             }
-        }
+        },
+        
     }
 }
 
