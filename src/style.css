@@ -9,12 +9,23 @@ section {
   justify-content: space-between;
 }
 
+.itemContainer, .header {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
 .itemContainer {
   border: black solid 2px;
   padding: 5px;
   margin: 5px;
+}
 
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
+.header {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.itemContainer p, .header p {
+  padding: 0 50px;
 }

@@ -4,7 +4,15 @@ export default class Item {
         this.status = status;
         this.rating = rating;
         this.hours = hours;
-        this.id = crypto.randomUUID();
+        
+
+        // non-enumerable ID property
+        Object.defineProperty(this, 'id', {
+            value: undefined,
+            enumerable: false,
+            writable: true,
+            configurable: true
+        });
     }
 
     // Getters

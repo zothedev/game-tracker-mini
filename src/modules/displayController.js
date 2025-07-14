@@ -33,6 +33,18 @@ export default function displayController() {
         clearDisplay() {
             section.innerHTML = "";
         },
+        createHeader() {
+            let headerContainer = document.createElement('div');
+            headerContainer.classList.add('header');
+            section.appendChild(headerContainer);
+            let headers = ["Name", "Status", "Rating", "Hours"];
+
+            for (let title of headers) {
+                let propertyContainer = document.createElement('p');
+                propertyContainer.textContent = title;
+                headerContainer.appendChild(propertyContainer);
+            }
+        }
     }
 }
 
