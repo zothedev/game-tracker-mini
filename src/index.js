@@ -1,7 +1,8 @@
 const log = console.log;
 
 // imports
-import "./style.css";
+import "./styles/style.css";
+import "./styles/list.css"
 import { getList } from "./modules/itemList";
 import displayController from "./modules/displayController";
 

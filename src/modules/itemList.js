@@ -35,14 +35,26 @@ export function filterList(filter) {
 // test items
 const rematch = new Item("REMATCH", "complete", 5, 50);
 const expedition33 = new Item("Expedition 33", "playing", 9, 40);
-const sts2 = new Item("Slay the Spire 2", "upcoming", 0, 0);
-
+const game = new Item("game", "upcoming", 0, 0);
+const game1 = new Item("game", "upcoming", 0, 0);
+const game2 = new Item("game", "upcoming", 0, 0);
+const game3 = new Item("game", "upcoming", 0, 0);
+const game4 = new Item("game", "upcoming", 0, 0);
+const game5 = new Item("game", "upcoming", 0, 0);
+const game6 = new Item("game", "upcoming", 0, 0);
 
 
 // add test items to list
 addItem(rematch);
 addItem(expedition33);
-addItem(sts2);
+addItem(game);
+addItem(game1);
+addItem(game2);
+addItem(game3);
+addItem(game4);
+addItem(game5);
+addItem(game6);
+
 
 
 
