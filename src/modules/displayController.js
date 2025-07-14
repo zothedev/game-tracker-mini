@@ -44,6 +44,9 @@ export default function displayController() {
                 headerContainer.appendChild(propertyContainer);
             }
         },
+        updateViewText(btn, elem) {
+            elem.textContent = `Viewing ${btn.textContent}`;
+        }
         
     }
 }

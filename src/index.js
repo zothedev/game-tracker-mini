@@ -12,12 +12,13 @@ const allTabsButton = document.querySelector('.allTabs');
 const upcomingButton = document.querySelector('.upcoming');
 const playingButton = document.querySelector('.playing');
 const completeButton = document.querySelector('.complete');
+const viewingText = document.querySelector('.viewing');
+
+// create a displayController object
+const display = displayController();
 
 // startup code
-const display = displayController();
-display.createHeader();
-display.displayItems(getList());
-allTabsButton.classList.add('active');
+prepareView(allTabsButton);
 
 // tab switching functionality
 navContainer.addEventListener('click', (e) => {
@@ -32,18 +33,6 @@ navContainer.addEventListener('click', (e) => {
         }
     }
 });
-// allTabsButton.addEventListener('click', () => {
-//     prepareView(allTabsButton);
-// });
-// upcomingButton.addEventListener('click', () => {
-//     prepareView(upcomingButton, 'upcoming');
-// });
-// playingButton.addEventListener('click', () => {
-//     prepareView(playingButton, 'playing');
-// });
-// completeButton.addEventListener('click', () => {
-//     prepareView(completeButton, 'complete');
-// });
 
 function removeActiveClassForAll() {
     allTabsButton.classList.remove('active');
@@ -57,6 +46,7 @@ function prepareView(btn, filter) {
     btn.classList.add('active');
     display.clearDisplay();
     display.createHeader();
+    display.updateViewText(btn, viewingText);
     if (filter) {
         display.displayItems(getList(), filter);
         return;
