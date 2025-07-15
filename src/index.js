@@ -2,8 +2,9 @@ const log = console.log;
 
 // imports
 import "./styles/style.css";
-import "./styles/list.css"
-import { getList } from "./modules/itemList";
+import "./styles/list.css";
+import "./styles/nav.css";
+
 import displayController, { prepareView } from "./modules/displayController";
 
 // selecting elements

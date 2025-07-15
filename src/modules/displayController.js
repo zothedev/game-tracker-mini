@@ -1,4 +1,4 @@
-import { addItem, removeItemByIndex, getList, filterList } from "./itemList.js";
+import { getList, filterList } from "./itemList.js";
 import { display } from "../index.js";
 
 const allTabsButton = document.querySelector('.allTabs');
@@ -56,8 +56,6 @@ export default function displayController() {
         },
         updateBodyBorderColor(tab) {
             const body = document.querySelector('body');
-            const sidebar1 = document.querySelector('.sidebars1');
-            const sidebar2 = document.querySelector('.sidebars2');
 
             let color;
 
@@ -79,7 +77,6 @@ export default function displayController() {
             }
 
             body.style.setProperty('--border-color', color);
-
         },
     }
 }
