@@ -4,18 +4,14 @@ const log = console.log;
 import "./styles/style.css";
 import "./styles/list.css"
 import { getList } from "./modules/itemList";
-import displayController from "./modules/displayController";
+import displayController, { prepareView } from "./modules/displayController";
 
-// selecting buttons
+// selecting elements
 const navContainer = document.querySelector('nav');
 const allTabsButton = document.querySelector('.allTabs');
-const upcomingButton = document.querySelector('.upcoming');
-const playingButton = document.querySelector('.playing');
-const completeButton = document.querySelector('.complete');
-const viewingText = document.querySelector('.viewing');
 
 // create a displayController object
-const display = displayController();
+export const display = displayController();
 
 // startup code
 prepareView(allTabsButton);
@@ -34,24 +30,8 @@ navContainer.addEventListener('click', (e) => {
     }
 });
 
-function removeActiveClassForAll() {
-    allTabsButton.classList.remove('active');
-    upcomingButton.classList.remove('active');
-    playingButton.classList.remove('active');
-    completeButton.classList.remove('active');
-}
 
-function prepareView(btn, filter) {
-    removeActiveClassForAll();
-    btn.classList.add('active');
-    display.clearDisplay();
-    display.createHeader();
-    display.updateViewText(btn, viewingText);
-    if (filter) {
-        display.displayItems(getList(), filter);
-        return;
-    }
-    display.displayItems(getList());
-}
+
+
 
 

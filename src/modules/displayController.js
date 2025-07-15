@@ -1,4 +1,11 @@
 import { addItem, removeItemByIndex, getList, filterList } from "./itemList.js";
+import { display } from "../index.js";
+
+const allTabsButton = document.querySelector('.allTabs');
+const upcomingButton = document.querySelector('.upcoming');
+const playingButton = document.querySelector('.playing');
+const completeButton = document.querySelector('.complete');
+const viewingText = document.querySelector('.viewing');
 
 export default function displayController() {
     const section = document.querySelector('section');
@@ -46,9 +53,56 @@ export default function displayController() {
         },
         updateViewText(btn, elem) {
             elem.textContent = `Viewing ${btn.textContent}`;
-        }
-        
+        },
+        updateBodyBorderColor(tab) {
+            const body = document.querySelector('body');
+            const sidebar1 = document.querySelector('.sidebars1');
+            const sidebar2 = document.querySelector('.sidebars2');
+
+            let color;
+
+            const rootStyles = getComputedStyle(document.documentElement);
+
+            switch (tab) {
+                case 'allTabs':
+                    color = rootStyles.getPropertyValue('--all-games-color').trim();
+                    break;
+                case 'upcoming':
+                    color = rootStyles.getPropertyValue('--upcoming-games-color').trim();
+                    break;
+                case 'playing':
+                    color = rootStyles.getPropertyValue('--playing-games-color').trim();
+                    break;
+                case 'complete':
+                    color = rootStyles.getPropertyValue('--complete-games-color').trim();
+                    break;
+            }
+
+            body.style.setProperty('--border-color', color);
+
+        },
     }
+}
+
+export function prepareView(btn, filter) {
+    removeActiveClassForAll();
+    btn.classList.add('active');
+    display.clearDisplay();
+    display.createHeader();
+    display.updateViewText(btn, viewingText);
+    display.updateBodyBorderColor(btn.classList[0]);
+    if (filter) {
+        display.displayItems(getList(), filter);
+        return;
+    }
+    display.displayItems(getList());
+}
+
+export function removeActiveClassForAll() {
+    allTabsButton.classList.remove('active');
+    upcomingButton.classList.remove('active');
+    playingButton.classList.remove('active');
+    completeButton.classList.remove('active');
 }
 
 
