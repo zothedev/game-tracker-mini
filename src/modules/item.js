@@ -5,10 +5,9 @@ export default class Item {
         this.rating = rating;
         this.hours = hours;
         
-
         // non-enumerable ID property
         Object.defineProperty(this, 'id', {
-            value: undefined,
+            value: crypto.randomUUID(),
             enumerable: false,
             writable: true,
             configurable: true

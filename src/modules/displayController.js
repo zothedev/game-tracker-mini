@@ -1,11 +1,6 @@
 import { getList, filterList } from "./itemList.js";
 import { display } from "../index.js";
-
-const allTabsButton = document.querySelector('.allTabs');
-const upcomingButton = document.querySelector('.upcoming');
-const playingButton = document.querySelector('.playing');
-const completeButton = document.querySelector('.complete');
-const viewingText = document.querySelector('.viewing');
+import { allTabsButton, upcomingButton, playingButton, completeButton, viewingText } from "../modules/domElements.js";
 
 export default function displayController() {
     const section = document.querySelector('section');
@@ -16,11 +11,19 @@ export default function displayController() {
         itemContainer.classList.add('itemContainer');
         section.appendChild(itemContainer);
 
+        // testing
+        itemContainer.classList.add('closed');
+
         for (let property in item) {
             let propertyContainer = document.createElement('p');
             propertyContainer.textContent = item[property];
             itemContainer.appendChild(propertyContainer);
         }
+
+        const expandButton = document.createElement('button');
+        expandButton.classList.add('expand');
+        expandButton.classList.add(item.getID());
+        itemContainer.appendChild(expandButton);
     }
 
     return {
@@ -38,18 +41,6 @@ export default function displayController() {
         },
         clearDisplay() {
             section.innerHTML = "";
-        },
-        createHeader() {
-            let headerContainer = document.createElement('div');
-            headerContainer.classList.add('header');
-            section.appendChild(headerContainer);
-            let headers = ["Name", "Status", "Rating", "Hours"];
-
-            for (let title of headers) {
-                let propertyContainer = document.createElement('p');
-                propertyContainer.textContent = title;
-                headerContainer.appendChild(propertyContainer);
-            }
         },
         updateViewText(btn, elem) {
             elem.textContent = `Viewing ${btn.textContent}`;
@@ -85,7 +76,6 @@ export function prepareView(btn, filter) {
     removeActiveClassForAll();
     btn.classList.add('active');
     display.clearDisplay();
-    display.createHeader();
     display.updateViewText(btn, viewingText);
     display.updateBodyBorderColor(btn.classList[0]);
     if (filter) {

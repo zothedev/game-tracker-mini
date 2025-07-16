@@ -6,10 +6,8 @@ import "./styles/list.css";
 import "./styles/nav.css";
 
 import displayController, { prepareView } from "./modules/displayController";
-
-// selecting elements
-const navContainer = document.querySelector('nav');
-const allTabsButton = document.querySelector('.allTabs');
+import { navContainer, allTabsButton } from "./modules/domElements";
+import "./modules/itemDrawer.js";
 
 // create a displayController object
 export const display = displayController();
