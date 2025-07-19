@@ -2,95 +2,107 @@ import { getList, filterList } from "./itemList.js";
 import { display } from "../index.js";
 import { allTabsButton, upcomingButton, playingButton, completeButton, viewingText } from "../modules/domElements.js";
 
-export default function displayController() {
-    const section = document.querySelector('section');
+export default class displayController {
 
-    // item display creator
-    function createItemDisplay(item) {
+    section = document.querySelector('section');
+    
+
+    // create, add classes, append, 
+    // and return the itemContainer
+    createItemContainer() {
         let itemContainer = document.createElement('div');
         itemContainer.classList.add('itemContainer');
-        section.appendChild(itemContainer);
-
-        // testing
         itemContainer.classList.add('closed');
+        this.section.appendChild(itemContainer);
+        return itemContainer;
+    }
 
+    populateItemContainer(item, itemContainer) {
+        // create a paragraph element for each property within the item and set the textContent of that paragraph to the value of the property
         for (let property in item) {
             let propertyContainer = document.createElement('p');
             propertyContainer.textContent = item[property];
-            itemContainer.appendChild(propertyContainer);
+            itemContainer.append(propertyContainer);
         }
+    }
 
+    createExpandButton(item, itemContainer) {
         const expandButton = document.createElement('button');
         expandButton.classList.add('expand');
         expandButton.classList.add(item.getID());
-        itemContainer.appendChild(expandButton);
+        itemContainer.append(expandButton);
     }
 
-    return {
-        displayItems(list, filter) {
-            if (filter) {
-                list = filterList(filter);
-                list.forEach(item => {
-                    createItemDisplay(item);
-                });
-            } else {
-                list.forEach(item => {
-                    createItemDisplay(item);
-                });
-            }
-        },
-        clearDisplay() {
-            section.innerHTML = "";
-        },
-        updateViewText(btn, elem) {
-            elem.textContent = `Viewing ${btn.textContent}`;
-        },
-        updateBodyBorderColor(tab) {
-            const body = document.querySelector('body');
+    // create the entire display for an item
+    createItemDisplay(item) {
+        const itemContainer = this.createItemContainer();
+        this.populateItemContainer(item, itemContainer);
+        this.createExpandButton(item, itemContainer);
+    }
 
-            let color;
+    displayList(list, filter) {
+        if (filter) {
+            list = filterList(filter);
+            list.forEach(item => {
+                this.createItemDisplay(item);
+            });
+        } else {
+            list.forEach(item => {
+                this.createItemDisplay(item);
+            });
+        }
+    }
 
-            const rootStyles = getComputedStyle(document.documentElement);
+    clearDisplay() {
+        this.section.innerHTML = "";
+    }
 
-            switch (tab) {
-                case 'allTabs':
-                    color = rootStyles.getPropertyValue('--all-games-color').trim();
-                    break;
-                case 'upcoming':
-                    color = rootStyles.getPropertyValue('--upcoming-games-color').trim();
-                    break;
-                case 'playing':
-                    color = rootStyles.getPropertyValue('--playing-games-color').trim();
-                    break;
-                case 'complete':
-                    color = rootStyles.getPropertyValue('--complete-games-color').trim();
-                    break;
-            }
+    updateViewText(btn, elem) {
+        elem.textContent = `Viewing ${btn.textContent}`;
+    }
 
-            body.style.setProperty('--border-color', color);
-        },
+    updateBodyBorderColor(tab) {
+        const body = document.querySelector('body');
+
+        let color;
+
+        const rootStyles = getComputedStyle(document.documentElement);
+
+        switch (tab) {
+            case 'allTabs':
+                color = rootStyles.getPropertyValue('--all-games-color').trim();
+                break;
+            case 'upcoming':
+                color = rootStyles.getPropertyValue('--upcoming-games-color').trim();
+                break;
+            case 'playing':
+                color = rootStyles.getPropertyValue('--playing-games-color').trim();
+                break;
+            case 'complete':
+                color = rootStyles.getPropertyValue('--complete-games-color').trim();
+                break;
+        }
+
+        body.style.setProperty('--border-color', color);
+    }
+
+    prepareView(btn, filter) {
+        this.removeActiveClassForAll();
+        btn.classList.add('active');
+        display.clearDisplay();
+        display.updateViewText(btn, viewingText);
+        display.updateBodyBorderColor(btn.classList[0]);
+        if (filter) {
+            display.displayList(getList(), filter);
+            return;
+        }
+        display.displayList(getList());
+    }
+
+    removeActiveClassForAll() {
+        allTabsButton.classList.remove('active');
+        upcomingButton.classList.remove('active');
+        playingButton.classList.remove('active');
+        completeButton.classList.remove('active');
     }
 }
-
-export function prepareView(btn, filter) {
-    removeActiveClassForAll();
-    btn.classList.add('active');
-    display.clearDisplay();
-    display.updateViewText(btn, viewingText);
-    display.updateBodyBorderColor(btn.classList[0]);
-    if (filter) {
-        display.displayItems(getList(), filter);
-        return;
-    }
-    display.displayItems(getList());
-}
-
-export function removeActiveClassForAll() {
-    allTabsButton.classList.remove('active');
-    upcomingButton.classList.remove('active');
-    playingButton.classList.remove('active');
-    completeButton.classList.remove('active');
-}
-
-
-

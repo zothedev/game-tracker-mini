@@ -5,15 +5,15 @@ import "./styles/style.css";
 import "./styles/list.css";
 import "./styles/nav.css";
 
-import displayController, { prepareView } from "./modules/displayController";
+import displayController from "./modules/displayController";
 import { navContainer, allTabsButton } from "./modules/domElements";
 import "./modules/itemDrawer.js";
 
 // create a displayController object
-export const display = displayController();
+export const display = new displayController();
 
 // startup code
-prepareView(allTabsButton);
+display.prepareView(allTabsButton);
 
 // tab switching functionality
 navContainer.addEventListener('click', (e) => {
@@ -22,9 +22,9 @@ navContainer.addEventListener('click', (e) => {
     // if the target is a <button>
     if (target instanceof HTMLButtonElement) {
         if (target.classList[0] === 'allTabs') {
-            prepareView(target);
+            display.prepareView(target);
         } else {
-            prepareView(target, target.classList[0]);
+            display.prepareView(target, target.classList[0]);
         }
     }
 });
