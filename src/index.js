@@ -6,7 +6,7 @@ import "./styles/list.css";
 import "./styles/nav.css";
 
 import displayController from "./modules/displayController";
-import { navContainer, allTabsButton } from "./modules/domElements";
+import { navContainer, allTabsButton, addGameButton } from "./modules/domElements";
 import "./modules/itemDrawer.js";
 
 // create a displayController object
@@ -29,6 +29,10 @@ navContainer.addEventListener('click', (e) => {
     }
 });
 
+
+addGameButton.addEventListener('click', () => {
+    display.showNewGameBox();
+});
 
 
 

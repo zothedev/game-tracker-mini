@@ -2,13 +2,7 @@
   display: flex;
   flex-direction: row;
   justify-content: center;
-
-  /* parent styles */
-  display: grid;
-  grid-template-columns: 4fr 2fr 2fr 2fr 0.5fr;
-  justify-items: center;
-  align-items: center;
-}
+}  
 
 .itemContainer p {
   padding: 0 50px;
@@ -41,9 +35,18 @@
 .closed {
   width: 1000px;
   height: 50px;
+  background-color: brown;
+
+  /* parent styles */
+  display: grid;
+  grid-template-columns: 4fr 2fr 2fr 2fr 0.5fr;
+  justify-items: center;
+  align-items: center;
 }
 
 .opened {
   width: 1000px;
   height: 300px;
+
+  background-color: rgb(42, 165, 87);
 }

@@ -23,18 +23,10 @@ body {
 
   display: grid;
   grid-template-columns: 1fr 2fr 1fr;
-  grid-template-rows: 15% 10% 10% 1fr;
+  grid-template-rows: 10% 10% 5% 10% 1fr;
 
   column-gap: 30px;
   box-shadow: inset 0 0 0 20px var(--border-color);
-}
-
-body::after {
-  content: '';
-  grid-column: 2 / 3;
-  grid-row: 1 / -1;
-  background-color: rgba(42, 174, 177, 0.8);
-  z-index: -1;
 }
 
 .title {
@@ -43,16 +35,36 @@ body::after {
 
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: end;
   gap: 2%;
 
   font-size: 40px;
   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
 
+.dashboard {
+  grid-row: 3 / 4;
+  grid-column: 2 / 3;
+}
+
+.dashboard button {
+  width: 200px;
+  height: 50px;
+}
+
+.newGameContainer {
+  /* parent styles */
+  grid-column: 2 / 3;
+  grid-row: 3 / 4;
+  background-color: blue;
+
+  width: 100%;
+  height: 100%;
+}
+
 main {
   /* child properties */
-  grid-row: 3 / 4;
+  grid-row: 4 / 5;
   grid-column: 2 / 3;
 
   /* parent properties */
@@ -71,6 +83,8 @@ main h2 {
 
 section {
   /* child styles */
-  grid-row: 4 / 5;
+  grid-row: 5 / 6;
   grid-column: 2 / 3;
+
+  justify-self: center;
 }

@@ -5,3 +5,5 @@ export const completeButton = document.querySelector('.complete');
 export const viewingText = document.querySelector('.viewing');
 export const navContainer = document.querySelector('nav');
 export const sectionContainer = document.querySelector('section');
+export const addGameButton = document.querySelector('.addGameButton');
+export const mainContainer = document.querySelector('main');
