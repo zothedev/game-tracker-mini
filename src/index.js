@@ -4,6 +4,7 @@ const log = console.log;
 import "./styles/style.css";
 import "./styles/list.css";
 import "./styles/nav.css";
+import "./styles/addGame.css";
 
 import displayController from "./modules/displayController";
 import { navContainer, allTabsButton, addGameButton } from "./modules/domElements";

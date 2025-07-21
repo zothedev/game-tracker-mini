@@ -40,14 +40,14 @@ export default class displayController {
         this.createExpandButton(item, itemContainer);
     }
 
-    displayList(list, filter) {
+    displayList(gameList, filter) {
         if (filter) {
-            list = filterList(filter);
-            list.forEach(item => {
+            gameList = filterList(filter);
+            gameList.forEach(item => {
                 this.createItemDisplay(item);
             });
         } else {
-            list.forEach(item => {
+            gameList.forEach(item => {
                 this.createItemDisplay(item);
             });
         }
@@ -118,6 +118,21 @@ export default class displayController {
         }
     }
 
+    createStatusRadioBox(status ,statusContainer) {
+        let radioInput = document.createElement('input');
+        radioInput.type = 'radio';
+        radioInput.name = status;
+        radioInput.id = status;
+        radioInput.value = status;
+        let radioLabel = document.createElement('label');
+        radioLabel.textContent = status;
+        radioLabel.htmlFor = status;
+        const radioContainer = document.createElement('p');
+        radioContainer.appendChild(radioInput);
+        radioContainer.appendChild(radioLabel);
+        statusContainer.appendChild(radioContainer);
+    }
+
     showNewGameBox() {
 
         // as long as the add game box is not
@@ -133,40 +148,60 @@ export default class displayController {
             // name input
             let nameInput = document.createElement('input')
             nameInput.placeholder = 'Name of Game';
+            nameInput.name = 'Name of Game';
             newGameContainer.appendChild(nameInput);
 
             // hours input
             let hoursInput = document.createElement('input')
             hoursInput.placeholder = 'Hours Played';
+            hoursInput.name = 'Hours Played';
             hoursInput.type = 'number';
             newGameContainer.appendChild(hoursInput);
 
             // status picker
             let statusContainer = document.createElement('fieldset');
-
-            // zo make this into a reusable function
-            let upcomingRadioBox = document.createElement('input');
-            upcomingRadioBox.type = 'radio';
-            upcomingRadioBox.name = 'status';
-            upcomingRadioBox.id = 'upcoming';
-            upcomingRadioBox.value = 'upcoming';
-            statusContainer.appendChild(upcomingRadioBox);
-            let upcomingLabel = document.createElement('label');
-            upcomingLabel.textContent = 'upcoming';
-            upcomingLabel.htmlFor = 'upcoming';
-            statusContainer.appendChild(upcomingLabel);
-
+            this.createStatusRadioBox('upcoming', statusContainer);
+            this.createStatusRadioBox('playing', statusContainer);
+            this.createStatusRadioBox('complete', statusContainer);
             newGameContainer.appendChild(statusContainer);
 
+            // discard and save buttons
+            const changesButtons = document.createElement('div');
+            changesButtons.classList.add('changesButtons');
+            const discardChangesButton = document.createElement('button');
+            const saveChangesButton = document.createElement('button');
+            discardChangesButton.textContent = "X";
+            saveChangesButton.textContent = "Y";
+            newGameContainer.appendChild(changesButtons);
+            changesButtons.appendChild(discardChangesButton);
+            changesButtons.appendChild(saveChangesButton);
 
+            // game rating (number)
+            const ratingBox = document.createElement('div');
+            ratingBox.classList.add('ratingBox');
+            const ratingInput = document.createElement('input');
+            ratingInput.type = 'number';
+            ratingInput.min = 1;
+            ratingInput.max = 10;
+            ratingInput.id = 'rating-input';
 
+            let ratingLabel = document.createElement('label');
+            ratingLabel.textContent = 'Game Rating';
+            ratingLabel.htmlFor = 'rating-input';
+            ratingBox.appendChild(ratingLabel);
+            ratingBox.appendChild(ratingInput);
+            newGameContainer.appendChild(ratingBox);
 
         }
 
     }
 
+
+
     createNewGameBox() {
         let newGameContainer = document.createElement('form');
+        newGameContainer.id = 'addGame';
+        newGameContainer.name = 'addGame';
         newGameContainer.classList.add('newGameContainer');
         newGameContainer.classList.add('showing');
         return newGameContainer;
